@@ -17,6 +17,8 @@
 		C7894F3721079F240009CF58 /* TestBirdProtoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C7894F3621079F240009CF58 /* TestBirdProtoTests.m */; };
 		C795FA1E210E5CB10087B7BF /* PMONSImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C795FA1D210E5CB10087B7BF /* PMONSImageView.m */; };
 		C795FA4B210FB39F0087B7BF /* NSImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = C795FA4A210FB39F0087B7BF /* NSImage+Resize.m */; };
+		C795FA502110A7E00087B7BF /* PMOAppiumClientFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = C795FA4F2110A7E00087B7BF /* PMOAppiumClientFactory.m */; };
+		C795FA56211100BD0087B7BF /* NSImage+ResizeToPoints.m in Sources */ = {isa = PBXBuildFile; fileRef = C795FA55211100BD0087B7BF /* NSImage+ResizeToPoints.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +54,10 @@
 		C795FA20210E5EDB0087B7BF /* PMOMouseClickedDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PMOMouseClickedDelegate.h; sourceTree = "<group>"; };
 		C795FA49210FB39F0087B7BF /* NSImage+Resize.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSImage+Resize.h"; sourceTree = "<group>"; };
 		C795FA4A210FB39F0087B7BF /* NSImage+Resize.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSImage+Resize.m"; sourceTree = "<group>"; };
+		C795FA4E2110A7E00087B7BF /* PMOAppiumClientFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PMOAppiumClientFactory.h; sourceTree = "<group>"; };
+		C795FA4F2110A7E00087B7BF /* PMOAppiumClientFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PMOAppiumClientFactory.m; sourceTree = "<group>"; };
+		C795FA54211100BD0087B7BF /* NSImage+ResizeToPoints.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSImage+ResizeToPoints.h"; sourceTree = "<group>"; };
+		C795FA55211100BD0087B7BF /* NSImage+ResizeToPoints.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSImage+ResizeToPoints.m"; sourceTree = "<group>"; };
 		CE151F56E2B3B578FF2D4CB9 /* Pods-TestBirdProtoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestBirdProtoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestBirdProtoTests/Pods-TestBirdProtoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F2A1AA65CB056BF012797970 /* Pods-TestBirdProto.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestBirdProto.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestBirdProto/Pods-TestBirdProto.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -127,6 +133,8 @@
 		C795FA43210FB2460087B7BF /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				C795FA54211100BD0087B7BF /* NSImage+ResizeToPoints.h */,
+				C795FA55211100BD0087B7BF /* NSImage+ResizeToPoints.m */,
 				C795FA49210FB39F0087B7BF /* NSImage+Resize.h */,
 				C795FA4A210FB39F0087B7BF /* NSImage+Resize.m */,
 			);
@@ -161,16 +169,8 @@
 				C7F0C304210BCAF2000A05C5 /* Factories */,
 				C7F0C303210BCAD5000A05C5 /* ViewControllers */,
 				C7F0C302210BCACC000A05C5 /* Views */,
-				C7F0C301210BCAC5000A05C5 /* Models */,
 			);
 			path = Source;
-			sourceTree = "<group>";
-		};
-		C7F0C301210BCAC5000A05C5 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		C7F0C302210BCACC000A05C5 /* Views */ = {
@@ -194,6 +194,8 @@
 		C7F0C304210BCAF2000A05C5 /* Factories */ = {
 			isa = PBXGroup;
 			children = (
+				C795FA4E2110A7E00087B7BF /* PMOAppiumClientFactory.h */,
+				C795FA4F2110A7E00087B7BF /* PMOAppiumClientFactory.m */,
 			);
 			path = Factories;
 			sourceTree = "<group>";
@@ -363,9 +365,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C795FA502110A7E00087B7BF /* PMOAppiumClientFactory.m in Sources */,
 				C7894F2421079F230009CF58 /* ViewController.m in Sources */,
 				C7894F2C21079F240009CF58 /* main.m in Sources */,
 				C795FA1E210E5CB10087B7BF /* PMONSImageView.m in Sources */,
+				C795FA56211100BD0087B7BF /* NSImage+ResizeToPoints.m in Sources */,
 				C7894F2121079F230009CF58 /* AppDelegate.m in Sources */,
 				C795FA4B210FB39F0087B7BF /* NSImage+Resize.m in Sources */,
 			);

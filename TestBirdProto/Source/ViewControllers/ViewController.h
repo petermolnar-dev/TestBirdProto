@@ -12,7 +12,7 @@
 @interface ViewController : NSViewController <PMOMouseClickedDelegate>
 
 
-@property (weak) IBOutlet PMONSImageView *imageView;
+
 
 @end
 
