@@ -7,9 +7,12 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "PMONSImageView.h"
 
-@interface ViewController : NSViewController
+@interface ViewController : NSViewController <PMOMouseClickedDelegate>
 
+
+@property (weak) IBOutlet PMONSImageView *imageView;
 
 @end
 
