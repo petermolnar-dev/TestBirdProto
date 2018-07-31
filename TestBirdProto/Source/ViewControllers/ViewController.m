@@ -43,17 +43,18 @@
 - (NSDictionary *)capabilitiesFromUI {
     NSMutableDictionary *capabilities = [[NSMutableDictionary alloc] init];
     
-    [capabilities insertValue:[self.platFormVersionTxt stringValue] inPropertyWithKey:@"platformVersion"];
-    [capabilities insertValue:[self.deviceNameTxt stringValue] inPropertyWithKey:@"deviceName"];
-    [capabilities insertValue:[self.automatinoNameTxt stringValue] inPropertyWithKey:@"automationName"];
-    [capabilities insertValue:[self.appTxt stringValue] inPropertyWithKey:@"app"];
-    [capabilities insertValue:[self.xcodeOrdIdTxt stringValue] inPropertyWithKey:@"xcodeOrgId"];
-    [capabilities insertValue:[self.udidTxt stringValue] inPropertyWithKey:@"udid"];
-    [capabilities insertValue:[self.xcodeSigningIdTxt stringValue] inPropertyWithKey:@"xcodeSigningId"];
+    [capabilities setValue:@"iOS" forKey:@"platformName"];
+    [capabilities setValue:[self.platFormVersionTxt stringValue]  forKey:@"platformVersion"];
+    [capabilities setValue:[self.deviceNameTxt stringValue] forKey:@"deviceName"];
+    [capabilities setValue:[self.automatinoNameTxt stringValue] forKey:@"automationName"];
+    [capabilities setValue:[[self.appTxt stringValue] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] forKey:@"app"];
+    [capabilities setValue:[self.xcodeOrdIdTxt stringValue] forKey:@"xcodeOrgId"];
+    [capabilities setValue:[self.udidTxt stringValue] forKey:@"udid"];
+    [capabilities setValue:[self.xcodeSigningIdTxt stringValue] forKey:@"xcodeSigningId"];
     if ([self.noReset state] == NSOnState ) {
-        [capabilities insertValue:@"true" inPropertyWithKey:@"noReset"];
+        [capabilities setValue:@"true" forKey:@"noReset"];
     } else {
-        [capabilities insertValue:@"false" inPropertyWithKey:@"noReset"];
+        [capabilities setValue:@"false" forKey:@"noReset"];
     }
     
     return capabilities;
@@ -62,13 +63,15 @@
 #pragma mark - IB Action implementations
 - (IBAction)initAppiumSession:(NSButton *)sender {
     
-    NSError *error;
-    
-    self.mainSession = [self.mainAppiumClient postSessionWithDesiredCapabilities:[PMOAppiumClientFactory buildCapabilitiesFrom:[self capabilitiesFromUI]] andRequiredCapabilities:nil error:&error];
+    [self initMainSession];
 }
 
 - (IBAction)makeScreenShot:(NSButtonCell *)sender {
     NSError *error;
+    if (!self.mainSession) {
+        [self initMainSession];
+    }
+    
     NSImage *screenShot = [self.mainAppiumClient getScreenshotWithSession:self.mainSession.sessionId error:&error];
     
     if (screenShot) {
@@ -77,6 +80,7 @@
         self.imageView.image = screenShot;
         
         [self.imageView setFrameSize:screenShot.size];
+        [self.imageView setFrame:NSMakeRect(0, self.view.frame.size.height - screenShot.size.height, screenShot.size.width, screenShot.size.height)];
         [self.imageView setNeedsDisplay];
         
     }
@@ -85,7 +89,10 @@
 
 #pragma mark - Accessors
 - (SEJsonWireClient *)mainAppiumClient {
-    return [PMOAppiumClientFactory buildClientForServerAddress:@"0.0.0.0" serverPort:4723];
+    if (!_mainAppiumClient) {
+        _mainAppiumClient = [PMOAppiumClientFactory buildClientForServerAddress:@"0.0.0.0" serverPort:4723];
+    }
+    return _mainAppiumClient;
 }
 
 #pragma mark - Implementing PMOMouseClickedDelegate
@@ -98,6 +105,13 @@
     
     [self.mainAppiumClient postTouchAction:newTouchAction session:self.mainSession.sessionId error:&error];
     
+}
+
+#pragma mark - Helpers
+- (void)initMainSession {
+    NSError *error;
+    
+    self.mainSession = [self.mainAppiumClient postSessionWithDesiredCapabilities:[PMOAppiumClientFactory buildCapabilitiesFrom:[self capabilitiesFromUI]] andRequiredCapabilities:nil error:&error];
 }
 
 @end
