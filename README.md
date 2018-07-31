@@ -13,6 +13,8 @@
 
 ## Using the prototype
 
+After cloning don't forget to install cocoapods.: $ pods install 
+
 Currently only iPhone devices supported, minimum iOS version: 10, not all of the iOS portfolio (iPads are not).
 The default values for the capabilities are like the placeholders in the textfileds.
 
